@@ -578,3 +578,157 @@ async def get_paypal_config():
     return {
         "client_id": os.environ.get('PAYPAL_CLIENT_ID')
     }
+
+
+# ============== CONTRATOS DE LICENCIA ==============
+
+@router.get("/contracts/list")
+async def list_contracts():
+    """
+    Listar contratos disponibles por tipo de licencia
+    """
+    import os as os_module
+    
+    contracts_dir = "/app/uploads/contracts"
+    result = {
+        "basica": {"es": None, "en": None},
+        "premium": {"es": None, "en": None},
+        "exclusiva": {"es": None, "en": None}
+    }
+    
+    for license_type in ["basica", "premium", "exclusiva"]:
+        license_dir = os_module.path.join(contracts_dir, license_type)
+        if os_module.path.exists(license_dir):
+            files = os_module.listdir(license_dir)
+            for f in files:
+                if f.endswith('.pdf'):
+                    # Detectar idioma por nombre de archivo
+                    f_lower = f.lower()
+                    if '_es' in f_lower or 'español' in f_lower or 'spanish' in f_lower:
+                        result[license_type]["es"] = f
+                    elif '_en' in f_lower or 'english' in f_lower or 'ingles' in f_lower:
+                        result[license_type]["en"] = f
+                    else:
+                        # Si no tiene sufijo de idioma, asignar a español por defecto
+                        if not result[license_type]["es"]:
+                            result[license_type]["es"] = f
+    
+    return result
+
+
+@router.get("/contract/{license_type}/{language}")
+async def download_contract(license_type: str, language: str, buyer_email: str, beat_id: str):
+    """
+    Descargar contrato de licencia según tipo e idioma.
+    Verifica que el usuario haya comprado esa licencia.
+    
+    - license_type: basica, premium, exclusiva
+    - language: es (español), en (inglés)
+    """
+    from fastapi.responses import FileResponse
+    import os as os_module
+    
+    # Validar tipo de licencia
+    license_type = license_type.lower()
+    if license_type not in ["basica", "premium", "exclusiva"]:
+        raise HTTPException(status_code=400, detail="Tipo de licencia no válido")
+    
+    # Validar idioma
+    language = language.lower()
+    if language not in ["es", "en"]:
+        raise HTTPException(status_code=400, detail="Idioma no válido. Usa 'es' o 'en'")
+    
+    # Verificar que el usuario tiene una compra de este beat con esta licencia o superior
+    license_priority = {"basica": 1, "premium": 2, "exclusiva": 3}
+    
+    sales = await db.sales.find({
+        "beat_id": beat_id,
+        "buyer_email": buyer_email,
+        "$or": [
+            {"status": "succeeded"},
+            {"status": {"$exists": False}}
+        ]
+    }).to_list(100)
+    
+    if not sales:
+        raise HTTPException(status_code=403, detail="No tienes acceso a este contrato")
+    
+    # Verificar que tiene la licencia correcta
+    best_license = "basica"
+    for sale in sales:
+        sale_license = sale.get("license_type", "").lower()
+        if license_priority.get(sale_license, 0) > license_priority.get(best_license, 0):
+            best_license = sale_license
+    
+    # Verificar que la licencia solicitada es igual o menor a la comprada
+    if license_priority.get(license_type, 0) > license_priority.get(best_license, 0):
+        raise HTTPException(
+            status_code=403, 
+            detail=f"Solo tienes acceso al contrato de licencia {best_license}"
+        )
+    
+    # Buscar archivo del contrato
+    contracts_dir = f"/app/uploads/contracts/{license_type}"
+    
+    if not os_module.path.exists(contracts_dir):
+        raise HTTPException(status_code=404, detail="Directorio de contratos no encontrado")
+    
+    # Buscar archivo por idioma
+    files = os_module.listdir(contracts_dir)
+    contract_file = None
+    
+    for f in files:
+        if not f.endswith('.pdf'):
+            continue
+        f_lower = f.lower()
+        
+        if language == "es":
+            if '_es' in f_lower or 'español' in f_lower or 'spanish' in f_lower:
+                contract_file = f
+                break
+        elif language == "en":
+            if '_en' in f_lower or 'english' in f_lower or 'ingles' in f_lower:
+                contract_file = f
+                break
+    
+    # Si no encuentra con sufijo, buscar cualquier PDF
+    if not contract_file:
+        for f in files:
+            if f.endswith('.pdf'):
+                contract_file = f
+                break
+    
+    if not contract_file:
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Contrato de licencia {license_type} en {language.upper()} no disponible"
+        )
+    
+    filepath = os_module.path.join(contracts_dir, contract_file)
+    
+    # Obtener nombre del beat para el nombre del archivo descargado
+    beat = await db.beats.find_one({"beat_id": beat_id}, {"_id": 0, "name": 1})
+    beat_name = beat.get("name", beat_id) if beat else beat_id
+    
+    # Nombre descriptivo para descarga
+    lang_name = "ESP" if language == "es" else "ENG"
+    download_name = f"Contrato_Licencia_{license_type.capitalize()}_{beat_name}_{lang_name}.pdf"
+    
+    return FileResponse(
+        path=filepath,
+        filename=download_name,
+        media_type="application/pdf"
+    )
+
+
+@router.post("/contracts/upload")
+async def upload_contract(
+    license_type: str,
+    language: str,
+    file: bytes
+):
+    """
+    Endpoint para subir contratos desde admin (futuro)
+    """
+    raise HTTPException(status_code=501, detail="Usar panel de admin para subir contratos")
+
