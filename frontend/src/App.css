@@ -1,34 +1,134 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Remove default body margin */
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.App-header {
-    background-color: #0f0f10;
+/* Hero Background Image */
+.hero-with-bg {
+    position: relative;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
 }
 
-.App-link {
-    color: #61dafb;
+/* Hero Background - GIF de producción musical */
+.hero-with-bg {
+    min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+.hero-bg-image {
+    background-image: url('https://customer-assets.emergentagent.com/job_beatmarket-43/artifacts/7r1glg1c_Ableton-Workflow.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) blur(2px) contrast(1.2) brightness(0.7);
+    opacity: 0.6;
+    transform: scale(1.05);
+}
+
+/* Value Props Background - Sintetizador */
+.value-props {
+    position: relative;
+    overflow: hidden;
+}
+
+.value-props::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://customer-assets.emergentagent.com/job_beatmarket-43/artifacts/etubvkn4_syn.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(1px) brightness(0.3);
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.value-props > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e5e5e5;
+}
+
+/* Smooth transitions for buttons and interactive elements */
+button {
+    transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Card hover effects */
+.group:hover {
+    transition: border-color 0.3s ease;
+}
+
+/* Selection styling */
+::selection {
+    background: #ffffff;
+    color: black;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* Marquee Animations */
+@keyframes marquee-left {
+    0% {
+        transform: translateX(0);
     }
-    to {
-        transform: rotate(360deg);
+    100% {
+        transform: translateX(-100%);
     }
+}
+
+@keyframes marquee-right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-marquee-left {
+    animation: marquee-left 300s linear infinite;
+}
+
+.animate-marquee-right {
+    animation: marquee-right 300s linear infinite;
+}
+
+.animate-marquee-left-slow {
+    animation: marquee-left 360s linear infinite;
+}
+
+.animate-marquee-right-slow {
+    animation: marquee-right 360s linear infinite;
 }

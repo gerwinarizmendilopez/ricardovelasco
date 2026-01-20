@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ocultar el overlay de errores de React en desarrollo */
+#webpack-dev-server-client-overlay,
+#webpack-dev-server-client-overlay-div,
+iframe[style*="position: fixed"] {
+    display: none !important;
+}
+
 body {
     margin: 0;
     font-family:
@@ -112,4 +119,52 @@ code {
         border-top-color: inherit;
         border-bottom-color: inherit;
     }
+}
+
+/* Gallery Animation Keyframes */
+@keyframes scroll-down {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes scroll-up {
+    0% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes scroll-down-slow {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* Gallery Animation Classes */
+.animate-scroll-down {
+    animation: scroll-down 25s linear infinite;
+}
+
+.animate-scroll-up {
+    animation: scroll-up 20s linear infinite;
+}
+
+.animate-scroll-down-slow {
+    animation: scroll-down-slow 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-scroll-down:hover,
+.animate-scroll-up:hover,
+.animate-scroll-down-slow:hover {
+    animation-play-state: paused;
 }
