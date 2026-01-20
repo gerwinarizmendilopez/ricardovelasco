@@ -25,6 +25,7 @@ const licenseColors = {
 const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
   const { user, token } = useAuth();
   const [downloading, setDownloading] = useState(null);
+  const [showContractOptions, setShowContractOptions] = useState(false);
 
   const handleDownload = async (fileType) => {
     setDownloading(fileType);
@@ -69,6 +70,52 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
       toast.info(`El archivo ${fileNames[fileType] || fileType} no está disponible. Contacta a soporte: home.recordsinfo@gmail.com`, {
         duration: 5000
       });
+    } finally {
+      setDownloading(null);
+    }
+  };
+
+  const handleDownloadContract = async (language) => {
+    setDownloading(`contract_${language}`);
+    try {
+      const buyerEmail = user?.email || sale.buyer_email;
+      const licenseType = sale.license_type?.toLowerCase() || 'basica';
+      
+      const response = await axios.get(
+        `${API}/payment/contract/${licenseType}/${language}?buyer_email=${encodeURIComponent(buyerEmail)}&beat_id=${sale.beat_id}`,
+        {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          responseType: 'blob'
+        }
+      );
+      
+      // Verificar si es error JSON
+      if (response.data.type === 'application/json') {
+        const text = await response.data.text();
+        const error = JSON.parse(text);
+        toast.info(error.detail || 'Contrato no disponible');
+        return;
+      }
+      
+      const langName = language === 'es' ? 'ESP' : 'ENG';
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Contrato_${sale.license_type}_${sale.beat_name}_${langName}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      
+      toast.success(`Contrato en ${language === 'es' ? 'español' : 'inglés'} descargado`);
+      setShowContractOptions(false);
+    } catch (error) {
+      console.error('Error descargando contrato:', error);
+      if (error.response?.status === 404) {
+        toast.info(`Contrato en ${language === 'es' ? 'español' : 'inglés'} no disponible aún. Contacta soporte.`);
+      } else {
+        toast.info('El contrato no está disponible. Contacta a soporte: home.recordsinfo@gmail.com');
+      }
     } finally {
       setDownloading(null);
     }
