@@ -121,8 +121,7 @@ export const Contacto = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://customer-assets.emergentagent.com/job_pagina-archivos/artifacts/q2wzsbnc_headphones-black-wall.jpg')`,
-            filter: 'blur(2px)',
+            backgroundImage: `url('https://customer-assets.emergentagent.com/job_music-marketplace-22/artifacts/xdyc1nt6_image.png')`,
             transform: 'scale(1.02)'
           }}
         />
