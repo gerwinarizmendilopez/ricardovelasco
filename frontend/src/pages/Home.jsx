@@ -184,7 +184,7 @@ export const Home = () => {
         {/* Background Image - Fully Responsive */}
         <style>{`
           .hero-bg-responsive {
-            background-image: url('https://customer-assets.emergentagent.com/job_beatstore-preview/artifacts/ui94vyj2_Dise%C3%B1o%20sin%20t%C3%ADtulo%20%2814%29.png');
+            background-image: url('https://customer-assets.emergentagent.com/job_music-marketplace-22/artifacts/mkinfvn5_Dise%C3%B1o%20sin%20t%C3%ADtulo%20%2820%29.png');
             background-size: cover;
             background-repeat: no-repeat;
           }
