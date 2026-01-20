@@ -132,6 +132,50 @@ export const Historial = () => {
     }
   };
 
+  const handleDownloadContract = async (beatId, licenseType, beatName, language) => {
+    const key = `${beatId}_${language}`;
+    setDownloadingContract(key);
+    try {
+      const response = await axios.get(
+        `${API}/payment/contract/${licenseType}/${language}?buyer_email=${encodeURIComponent(user.email)}&beat_id=${beatId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          responseType: 'blob'
+        }
+      );
+      
+      // Verificar si es error JSON
+      if (response.data.type === 'application/json') {
+        const text = await response.data.text();
+        const error = JSON.parse(text);
+        toast.error(error.detail || 'Contrato no disponible');
+        return;
+      }
+      
+      const langName = language === 'es' ? 'ESP' : 'ENG';
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Contrato_${licenseType}_${beatName}_${langName}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      
+      toast.success(`Contrato en ${language === 'es' ? 'español' : 'inglés'} descargado`);
+      setContractMenuOpen(null);
+    } catch (error) {
+      console.error('Error descargando contrato:', error);
+      if (error.response?.status === 404) {
+        toast.error(`Contrato en ${language === 'es' ? 'español' : 'inglés'} no disponible aún`);
+      } else {
+        toast.error('Error al descargar el contrato');
+      }
+    } finally {
+      setDownloadingContract(null);
+    }
+  };
+
   if (loading) {
     return (
       <div 
