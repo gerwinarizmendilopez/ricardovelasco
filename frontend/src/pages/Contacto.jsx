@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Music, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import emailjs from '@emailjs/browser';
+import axios from 'axios';
 
 // EmailJS Configuration
 const EMAILJS_SERVICE_ID = 'service_a3ulkvg';
 const EMAILJS_TEMPLATE_ID = 'template_c30a6zw';
 const EMAILJS_PUBLIC_KEY = 'adHDV687KKQGvu6MU';
 
-const generos = [
-  "Trap",
-  "Reggaeton",
-  "Hip Hop",
-  "R&B",
-  "Pop",
-  "Latin Urban",
-  "Drill",
-  "Afrobeat",
-  "House",
-  "Electrónica",
-  "Corridos Tumbados",
-  "Regional Mexicano",
-  "Otro"
-];
+const API = process.env.REACT_APP_BACKEND_URL + '/api';
 
 export const Contacto = () => {
+  const [generos, setGeneros] = useState([]);
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
