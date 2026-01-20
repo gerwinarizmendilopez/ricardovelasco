@@ -1372,6 +1372,7 @@ export const Admin = () => {
                         <th className="text-left py-3 px-4 text-sm text-white">Plays</th>
                         <th className="text-left py-3 px-4 text-sm text-white">Precio Base</th>
                         <th className="text-left py-3 px-4 text-sm text-white">Estado</th>
+                        <th className="text-left py-3 px-4 text-sm text-white">Archivos</th>
                         <th className="text-right py-3 px-4 text-sm text-white">Acciones</th>
                       </tr>
                     </thead>
