@@ -188,6 +188,99 @@ class BeatsMarketplaceAPITester:
         except Exception as e:
             self.log_test(f"Beat detail: {beat_id}", False, f"Exception: {str(e)}")
 
+    def test_contracts_list_endpoint(self):
+        """Test GET /api/payment/contracts/list endpoint"""
+        try:
+            response = requests.get(f"{self.api_url}/payment/contracts/list", timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                # Expected structure: {"basica": {"es": null, "en": null}, "premium": {...}, "exclusiva": {...}}
+                expected_licenses = ["basica", "premium", "exclusiva"]
+                expected_languages = ["es", "en"]
+                
+                if all(license_type in data for license_type in expected_licenses):
+                    # Check structure for each license type
+                    valid_structure = True
+                    for license_type in expected_licenses:
+                        if not isinstance(data[license_type], dict):
+                            valid_structure = False
+                            break
+                        for lang in expected_languages:
+                            if lang not in data[license_type]:
+                                valid_structure = False
+                                break
+                    
+                    if valid_structure:
+                        self.log_test("GET /api/payment/contracts/list", True, f"Structure valid: {data}")
+                    else:
+                        self.log_test("GET /api/payment/contracts/list", False, "Invalid contract structure")
+                else:
+                    self.log_test("GET /api/payment/contracts/list", False, f"Missing license types. Got: {list(data.keys())}")
+            else:
+                self.log_test("GET /api/payment/contracts/list", False, f"HTTP {response.status_code}", 200, response.status_code)
+        except Exception as e:
+            self.log_test("GET /api/payment/contracts/list", False, f"Exception: {str(e)}")
+
+    def test_contract_download_validation(self):
+        """Test contract download endpoint validation (should fail without valid purchase)"""
+        test_cases = [
+            ("basica", "es"),
+            ("premium", "en"),
+            ("exclusiva", "es")
+        ]
+        
+        for license_type, language in test_cases:
+            try:
+                # Test without valid purchase - should return 403
+                response = requests.get(
+                    f"{self.api_url}/payment/contract/{license_type}/{language}",
+                    params={
+                        "buyer_email": "test@example.com",
+                        "beat_id": "test_beat_id"
+                    },
+                    timeout=10
+                )
+                
+                if response.status_code == 403:
+                    self.log_test(f"Contract validation {license_type}/{language}", True, "Correctly blocked unauthorized access")
+                elif response.status_code == 404:
+                    self.log_test(f"Contract validation {license_type}/{language}", True, "Contract file not found (expected for empty directories)")
+                else:
+                    self.log_test(f"Contract validation {license_type}/{language}", False, f"Expected 403/404, got {response.status_code}")
+            except Exception as e:
+                self.log_test(f"Contract validation {license_type}/{language}", False, f"Exception: {str(e)}")
+
+    def test_contract_endpoint_parameters(self):
+        """Test contract endpoint parameter validation"""
+        # Test invalid license type
+        try:
+            response = requests.get(
+                f"{self.api_url}/payment/contract/invalid/es",
+                params={"buyer_email": "test@example.com", "beat_id": "test"},
+                timeout=10
+            )
+            if response.status_code == 400:
+                self.log_test("Contract invalid license type", True, "Correctly rejected invalid license")
+            else:
+                self.log_test("Contract invalid license type", False, f"Expected 400, got {response.status_code}")
+        except Exception as e:
+            self.log_test("Contract invalid license type", False, f"Exception: {str(e)}")
+        
+        # Test invalid language
+        try:
+            response = requests.get(
+                f"{self.api_url}/payment/contract/basica/fr",
+                params={"buyer_email": "test@example.com", "beat_id": "test"},
+                timeout=10
+            )
+            if response.status_code == 400:
+                self.log_test("Contract invalid language", True, "Correctly rejected invalid language")
+            else:
+                self.log_test("Contract invalid language", False, f"Expected 400, got {response.status_code}")
+        except Exception as e:
+            self.log_test("Contract invalid language", False, f"Exception: {str(e)}")
+
     def run_all_tests(self):
         """Run all tests"""
         print(f"🚀 Starting API tests for: {self.base_url}")
