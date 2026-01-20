@@ -10,7 +10,7 @@ import axios from 'axios';
 const API = process.env.REACT_APP_BACKEND_URL + '/api';
 
 export const Admin = () => {
-  const [activeTab, setActiveTab] = useState('beats'); // 'beats' | 'sales' | 'genres'
+  const [activeTab, setActiveTab] = useState('beats'); // 'beats' | 'sales' | 'genres' | 'contracts'
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editingBeat, setEditingBeat] = useState(null);
@@ -21,6 +21,14 @@ export const Admin = () => {
   const [uploading, setUploading] = useState(false);
   const [newGenre, setNewGenre] = useState('');
   const [addingGenre, setAddingGenre] = useState(false);
+  
+  // Estados para contratos globales
+  const [globalContracts, setGlobalContracts] = useState({
+    basica: { es: null, en: null },
+    premium: { es: null, en: null },
+    exclusiva: { es: null, en: null }
+  });
+  const [uploadingContract, setUploadingContract] = useState(null);
   
   // Estados para modales de promoción
   const [showDiscountModal, setShowDiscountModal] = useState(false);
