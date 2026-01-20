@@ -40,6 +40,17 @@ class BeatsMarketplaceAPITester:
                 if 'beats' in data and isinstance(data['beats'], list):
                     beats_count = len(data['beats'])
                     self.log_test(f"GET /api/beats (Found {beats_count} beats)", True)
+                    
+                    # Print first beat details for debugging
+                    if beats_count > 0:
+                        first_beat = data['beats'][0]
+                        print(f"   First beat details:")
+                        print(f"   - beat_id: {first_beat.get('beat_id')}")
+                        print(f"   - audio_filename: {first_beat.get('audio_filename')}")
+                        print(f"   - cover_filename: {first_beat.get('cover_filename')}")
+                        print(f"   - audio_url: {first_beat.get('audio_url')}")
+                        print(f"   - cover_url: {first_beat.get('cover_url')}")
+                    
                     return data['beats']
                 else:
                     self.log_test("GET /api/beats", False, "Response missing 'beats' array")
