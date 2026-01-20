@@ -117,6 +117,7 @@ export const Admin = () => {
     fetchBeats();
     fetchSales();
     fetchGenres();
+    fetchContracts();
   }, []);
 
   const fetchBeats = async () => {
@@ -146,6 +147,37 @@ export const Admin = () => {
       setGenres(response.data.genres || []);
     } catch (error) {
       console.error('Error cargando géneros:', error);
+    }
+  };
+
+  const fetchContracts = async () => {
+    try {
+      const response = await axios.get(`${API}/payment/contracts/list`);
+      setGlobalContracts(response.data);
+    } catch (error) {
+      console.error('Error cargando contratos:', error);
+    }
+  };
+
+  const handleUploadContract = async (licenseType, language, file) => {
+    if (!file) return;
+    
+    const key = `${licenseType}_${language}`;
+    setUploadingContract(key);
+    
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('license_type', licenseType);
+      formData.append('language', language);
+      
+      await axios.post(`${API}/payment/contracts/upload`, formData);
+      toast.success(`Contrato ${licenseType} (${language.toUpperCase()}) subido`);
+      fetchContracts();
+    } catch (error) {
+      toast.error(error.response?.data?.detail || 'Error al subir contrato');
+    } finally {
+      setUploadingContract(null);
     }
   };
 
