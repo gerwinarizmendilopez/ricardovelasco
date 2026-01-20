@@ -70,7 +70,12 @@ class BeatsMarketplaceAPITester:
         
         # Test first beat's audio
         beat = beats[0]
-        audio_filename = beat.get('audio_filename') or f"{beat.get('beat_id', 'test')}.mp3"
+        # Extract filename from audio_url if available, otherwise use audio_filename
+        audio_url = beat.get('audio_url', '')
+        if audio_url:
+            audio_filename = audio_url.split('/')[-1]  # Get filename from URL
+        else:
+            audio_filename = beat.get('audio_filename') or f"{beat.get('beat_id', 'test')}.mp3"
         
         try:
             # Try GET with range header to avoid downloading full file
