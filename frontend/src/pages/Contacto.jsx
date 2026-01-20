@@ -26,6 +26,21 @@ export const Contacto = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
 
+  // Cargar géneros desde el backend
+  useEffect(() => {
+    const fetchGeneros = async () => {
+      try {
+        const response = await axios.get(`${API}/beats/genres/list`);
+        if (response.data.genres && response.data.genres.length > 0) {
+          setGeneros(response.data.genres.map(g => g.name));
+        }
+      } catch (err) {
+        console.error('Error cargando géneros:', err);
+      }
+    };
+    fetchGeneros();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
