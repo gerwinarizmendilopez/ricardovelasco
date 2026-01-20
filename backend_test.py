@@ -62,8 +62,10 @@ class BeatsMarketplaceAPITester:
         audio_filename = beat.get('audio_filename') or f"{beat.get('beat_id', 'test')}.mp3"
         
         try:
-            response = requests.head(f"{self.api_url}/beats/audio/{audio_filename}", timeout=10)
-            if response.status_code == 200:
+            # Try GET with range header to avoid downloading full file
+            headers = {'Range': 'bytes=0-1023'}
+            response = requests.get(f"{self.api_url}/beats/audio/{audio_filename}", headers=headers, timeout=10)
+            if response.status_code in [200, 206]:  # 206 = Partial Content
                 self.log_test(f"Audio access: {audio_filename}", True)
             else:
                 self.log_test(f"Audio access: {audio_filename}", False, f"HTTP {response.status_code}", 200, response.status_code)
@@ -81,8 +83,10 @@ class BeatsMarketplaceAPITester:
         cover_filename = beat.get('cover_filename') or f"{beat.get('beat_id', 'test')}.jpg"
         
         try:
-            response = requests.head(f"{self.api_url}/beats/cover/{cover_filename}", timeout=10)
-            if response.status_code == 200:
+            # Try GET with range header to avoid downloading full file
+            headers = {'Range': 'bytes=0-1023'}
+            response = requests.get(f"{self.api_url}/beats/cover/{cover_filename}", headers=headers, timeout=10)
+            if response.status_code in [200, 206]:  # 206 = Partial Content
                 self.log_test(f"Cover access: {cover_filename}", True)
             else:
                 self.log_test(f"Cover access: {cover_filename}", False, f"HTTP {response.status_code}", 200, response.status_code)
