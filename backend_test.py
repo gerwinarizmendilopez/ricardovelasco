@@ -303,6 +303,12 @@ class BeatsMarketplaceAPITester:
         # Test beat detail
         self.test_beat_detail(beats)
         
+        # Test new contract endpoints
+        print("\n🔒 Testing Contract License System:")
+        self.test_contracts_list_endpoint()
+        self.test_contract_download_validation()
+        self.test_contract_endpoint_parameters()
+        
         # Print summary
         print("=" * 60)
         print(f"📊 Test Summary:")
