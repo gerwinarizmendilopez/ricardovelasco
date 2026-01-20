@@ -78,16 +78,19 @@ export const Admin = () => {
   const [editContractPremiumEn, setEditContractPremiumEn] = useState(null);
   const [editContractExclusivaEn, setEditContractExclusivaEn] = useState(null);
   
-  const [audioFile, setAudioFile] = useState(null);
+  const [audioFile, setAudioFile] = useState(null);  // MP3 descargable (sin marca)
+  const [audioPreviewFile, setAudioPreviewFile] = useState(null);  // MP3 exhibición (con marca de agua)
   const [coverFile, setCoverFile] = useState(null);
   const [wavFile, setWavFile] = useState(null);
   const [stemsFile, setStemsFile] = useState(null);
   const [audioPreview, setAudioPreview] = useState(null);
+  const [audioPreviewPreview, setAudioPreviewPreview] = useState(null);  // Preview del archivo de exhibición
   const [coverPreview, setCoverPreview] = useState(null);
   const [wavPreview, setWavPreview] = useState(null);
   const [stemsPreview, setStemsPreview] = useState(null);
   
   const audioInputRef = useRef(null);
+  const audioPreviewInputRef = useRef(null);  // Ref para MP3 exhibición
   const coverInputRef = useRef(null);
   const wavInputRef = useRef(null);
   const stemsInputRef = useRef(null);
