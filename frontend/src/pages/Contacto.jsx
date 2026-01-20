@@ -197,7 +197,7 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="Tu nombre completo"
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
             
@@ -213,7 +213,7 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="tu@email.com"
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
             
@@ -229,7 +229,7 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="Ej: Un tema para mi próximo álbum, un sencillo comercial..."
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
               />
             </div>
             
