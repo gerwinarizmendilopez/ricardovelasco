@@ -723,12 +723,45 @@ async def download_contract(license_type: str, language: str, buyer_email: str, 
 
 @router.post("/contracts/upload")
 async def upload_contract(
-    license_type: str,
-    language: str,
-    file: bytes
+    license_type: str = Form(...),
+    language: str = Form(...),
+    file: UploadFile = File(...)
 ):
     """
-    Endpoint para subir contratos desde admin (futuro)
+    Subir contrato PDF para una licencia e idioma específico
     """
-    raise HTTPException(status_code=501, detail="Usar panel de admin para subir contratos")
+    import os as os_module
+    import shutil
+    
+    # Validar tipo de licencia
+    license_type = license_type.lower()
+    if license_type not in ["basica", "premium", "exclusiva"]:
+        raise HTTPException(status_code=400, detail="Tipo de licencia no válido")
+    
+    # Validar idioma
+    language = language.lower()
+    if language not in ["es", "en"]:
+        raise HTTPException(status_code=400, detail="Idioma no válido. Usa 'es' o 'en'")
+    
+    # Validar que sea PDF
+    if not file.filename.endswith('.pdf'):
+        raise HTTPException(status_code=400, detail="Solo se permiten archivos PDF")
+    
+    # Crear directorio si no existe
+    contracts_dir = f"/app/uploads/contracts/{license_type}"
+    os_module.makedirs(contracts_dir, exist_ok=True)
+    
+    # Nombre del archivo
+    filename = f"contrato_{license_type}_{language}.pdf"
+    filepath = os_module.path.join(contracts_dir, filename)
+    
+    # Guardar archivo
+    with open(filepath, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    return {
+        "success": True,
+        "message": f"Contrato {license_type} ({language.upper()}) subido correctamente",
+        "filename": filename
+    }
 
