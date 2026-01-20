@@ -527,7 +527,7 @@ export const Admin = () => {
       <div 
         className="fixed inset-0 bg-black"
         style={{
-          backgroundImage: `url('https://customer-assets.emergentagent.com/job_secure-payment-app-3/artifacts/3w86ikrm_image.png')`,
+          backgroundImage: `url('https://customer-assets.emergentagent.com/job_music-marketplace-22/artifacts/zvg2771i_Dise%C3%B1o%20sin%20t%C3%ADtulo%20%2821%29.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
