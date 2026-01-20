@@ -173,13 +173,13 @@ export const Contacto = () => {
           </div>
           
           {/* Important Notice */}
-          <div className="bg-gradient-to-r from-gray-800/20 to-gray-400/10 border border-gray-800/30 rounded-xl p-6 mb-12">
+          <div className="bg-black/40 border border-white/10 rounded-xl p-6 mb-12 backdrop-blur-sm">
             <h3 className="text-white font-bold text-lg mb-3">📋 INFORMACIÓN IMPORTANTE</h3>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-white/80 leading-relaxed">
               En el siguiente formulario llenarás la información de tu proyecto. 
               <span className="text-white font-medium"> Los costos varían dependiendo de la requisición del cliente</span>. 
               Una vez enviada tu propuesta, nos pondremos en contacto contigo dentro de un plazo de 
-              <span className="text-white400 font-bold"> 24-48 horas</span>.
+              <span className="text-white font-bold"> 24-48 horas</span>.
             </p>
           </div>
           
