@@ -187,7 +187,7 @@ export const Contacto = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Nombre */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Nombre *
               </label>
               <input
@@ -197,13 +197,13 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="Tu nombre completo"
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white placeholder-gray-500 focus:border-white focus:ring-1 focus:ring-white transition-colors"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
               />
             </div>
             
             {/* Email */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Email *
               </label>
               <input
@@ -213,13 +213,13 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="tu@email.com"
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white placeholder-gray-500 focus:border-white focus:ring-1 focus:ring-white transition-colors"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
               />
             </div>
             
             {/* Propuesta */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Propuesta - ¿Qué quieres hacer? *
               </label>
               <input
@@ -229,7 +229,7 @@ export const Contacto = () => {
                 onChange={handleChange}
                 required
                 placeholder="Ej: Un tema para mi próximo álbum, un sencillo comercial..."
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white placeholder-gray-500 focus:border-white focus:ring-1 focus:ring-white transition-colors"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors backdrop-blur-sm"
               />
             </div>
             
