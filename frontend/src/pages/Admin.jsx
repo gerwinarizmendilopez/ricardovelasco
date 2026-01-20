@@ -1698,6 +1698,180 @@ export const Admin = () => {
             </CardContent>
           </Card>
         )}
+
+        {/* Contracts Tab */}
+        {activeTab === 'contracts' && (
+          <Card className="bg-black/50 border-gray-800/20 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-white">
+                📄 Gestión de Contratos de Licencia
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-black/30 rounded-lg p-4 mb-6">
+                <p className="text-sm text-white">
+                  <strong>Nota:</strong> Sube los contratos PDF para cada tipo de licencia en español e inglés. 
+                  Los usuarios podrán descargar el contrato correspondiente a su compra.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Básica */}
+                <div className="border border-green-500/30 rounded-lg p-4 bg-green-500/5">
+                  <h3 className="text-lg font-bold text-green-400 mb-4">Licencia Básica</h3>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇪🇸</span>
+                        <span className="text-white text-sm">Español</span>
+                      </div>
+                      {globalContracts.basica?.es ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.basica.es}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-basica-es"
+                        onChange={(e) => handleUploadContract('basica', 'es', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-basica-es" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'basica_es' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇺🇸</span>
+                        <span className="text-white text-sm">English</span>
+                      </div>
+                      {globalContracts.basica?.en ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.basica.en}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-basica-en"
+                        onChange={(e) => handleUploadContract('basica', 'en', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-basica-en" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'basica_en' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Premium */}
+                <div className="border border-blue-500/30 rounded-lg p-4 bg-blue-500/5">
+                  <h3 className="text-lg font-bold text-blue-400 mb-4">Licencia Premium</h3>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇪🇸</span>
+                        <span className="text-white text-sm">Español</span>
+                      </div>
+                      {globalContracts.premium?.es ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.premium.es}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-premium-es"
+                        onChange={(e) => handleUploadContract('premium', 'es', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-premium-es" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'premium_es' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇺🇸</span>
+                        <span className="text-white text-sm">English</span>
+                      </div>
+                      {globalContracts.premium?.en ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.premium.en}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-premium-en"
+                        onChange={(e) => handleUploadContract('premium', 'en', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-premium-en" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'premium_en' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Exclusiva */}
+                <div className="border border-yellow-500/30 rounded-lg p-4 bg-yellow-500/5">
+                  <h3 className="text-lg font-bold text-yellow-400 mb-4">Licencia Exclusiva</h3>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇪🇸</span>
+                        <span className="text-white text-sm">Español</span>
+                      </div>
+                      {globalContracts.exclusiva?.es ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.exclusiva.es}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-exclusiva-es"
+                        onChange={(e) => handleUploadContract('exclusiva', 'es', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-exclusiva-es" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'exclusiva_es' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center justify-between p-3 bg-black/40 rounded">
+                      <div className="flex items-center gap-2">
+                        <span>🇺🇸</span>
+                        <span className="text-white text-sm">English</span>
+                      </div>
+                      {globalContracts.exclusiva?.en ? (
+                        <span className="text-green-400 text-xs font-medium">✓ {globalContracts.exclusiva.en}</span>
+                      ) : (
+                        <span className="text-red-400 text-xs">No subido</span>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        id="contract-exclusiva-en"
+                        onChange={(e) => handleUploadContract('exclusiva', 'en', e.target.files[0])}
+                      />
+                      <label htmlFor="contract-exclusiva-en" className="cursor-pointer px-2 py-1 bg-white/10 hover:bg-white/20 rounded text-xs text-white">
+                        {uploadingContract === 'exclusiva_en' ? '...' : 'Subir'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Modal de Descuento */}
