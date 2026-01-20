@@ -156,22 +156,19 @@ export const Contacto = () => {
           
           {/* Info Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 text-center">
-              <Sparkles className="w-8 h-8 text-white mx-auto mb-4" />
+            <div className="bg-black/40 border border-white/10 rounded-xl p-6 text-center backdrop-blur-sm">
               <h3 className="text-white font-bold mb-2">100% Original</h3>
-              <p className="text-gray-500 text-sm">Beat único creado exclusivamente para ti</p>
+              <p className="text-white/70 text-sm">Beat único creado exclusivamente para ti</p>
             </div>
             
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 text-center">
-              <Clock className="w-8 h-8 text-white mx-auto mb-4" />
+            <div className="bg-black/40 border border-white/10 rounded-xl p-6 text-center backdrop-blur-sm">
               <h3 className="text-white font-bold mb-2">24-48 Horas</h3>
-              <p className="text-gray-500 text-sm">Respuesta garantizada en ese plazo</p>
+              <p className="text-white/70 text-sm">Respuesta garantizada en ese plazo</p>
             </div>
             
-            <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 text-center">
-              <Send className="w-8 h-8 text-white mx-auto mb-4" />
+            <div className="bg-black/40 border border-white/10 rounded-xl p-6 text-center backdrop-blur-sm">
               <h3 className="text-white font-bold mb-2">Precio Variable</h3>
-              <p className="text-gray-500 text-sm">Cotización según tu proyecto</p>
+              <p className="text-white/70 text-sm">Cotización según tu proyecto</p>
             </div>
           </div>
           
