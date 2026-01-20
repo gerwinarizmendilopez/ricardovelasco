@@ -27,6 +27,8 @@ export const Historial = () => {
   const [purchases, setPurchases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedPurchase, setExpandedPurchase] = useState(null);
+  const [contractMenuOpen, setContractMenuOpen] = useState(null);
+  const [downloadingContract, setDownloadingContract] = useState(null);
 
   useEffect(() => {
     const fetchPurchases = async () => {
