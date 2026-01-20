@@ -1432,6 +1432,45 @@ export const Admin = () => {
                               )}
                             </div>
                           </td>
+                          <td className="py-4 px-4">
+                            <div className="flex flex-wrap gap-1">
+                              {beat.audio_filename && (
+                                <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-xs rounded font-medium" title={beat.audio_filename}>
+                                  MP3 ✓
+                                </span>
+                              )}
+                              {beat.wav_filename && (
+                                <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-xs rounded font-medium" title={beat.wav_filename}>
+                                  WAV ✓
+                                </span>
+                              )}
+                              {beat.stems_filename && (
+                                <span className="px-2 py-0.5 bg-purple-500/20 text-purple-400 text-xs rounded font-medium" title={beat.stems_filename}>
+                                  STEMS ✓
+                                </span>
+                              )}
+                              {beat.cover_filename && (
+                                <span className="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-xs rounded font-medium" title={beat.cover_filename}>
+                                  IMG ✓
+                                </span>
+                              )}
+                              {!beat.audio_filename && (
+                                <span className="px-2 py-0.5 bg-red-500/20 text-red-400 text-xs rounded font-medium">
+                                  MP3 ✗
+                                </span>
+                              )}
+                              {!beat.wav_filename && (
+                                <span className="px-2 py-0.5 bg-red-500/20 text-red-400 text-xs rounded font-medium">
+                                  WAV ✗
+                                </span>
+                              )}
+                              {!beat.stems_filename && (
+                                <span className="px-2 py-0.5 bg-gray-500/20 text-gray-400 text-xs rounded font-medium">
+                                  STEMS ✗
+                                </span>
+                              )}
+                            </div>
+                          </td>
                           <td className="py-4 px-4 text-right">
                             <div className="flex items-center justify-end gap-1 flex-wrap">
                               {/* Descuento */}
