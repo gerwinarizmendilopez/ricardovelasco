@@ -582,7 +582,7 @@ export const Admin = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-6 flex-wrap">
           <Button
             variant={activeTab === 'beats' ? 'default' : 'outline'}
             className={activeTab === 'beats' ? 'bg-white text-black' : 'border-gray-800/20 text-gray-400'}
@@ -606,6 +606,13 @@ export const Admin = () => {
           >
             <Tag className="w-4 h-4 mr-2" />
             Géneros ({genres.length})
+          </Button>
+          <Button
+            variant={activeTab === 'contracts' ? 'default' : 'outline'}
+            className={activeTab === 'contracts' ? 'bg-white text-black' : 'border-gray-800/20 text-gray-400'}
+            onClick={() => setActiveTab('contracts')}
+          >
+            📄 Contratos
           </Button>
         </div>
 
