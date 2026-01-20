@@ -391,8 +391,8 @@ async def download_purchase_file(beat_id: str, file_type: str, license_type: str
         filepath = os_module.path.join(uploads_dir, "stems", filename)
         
     elif file_type == "license":
-        # Generar/devolver contrato de licencia (placeholder)
-        raise HTTPException(status_code=501, detail="Generación de contrato en desarrollo")
+        # Redirigir a endpoint de contratos
+        raise HTTPException(status_code=400, detail="Usa el endpoint /api/payment/contract/{license_type}/{language}")
     else:
         raise HTTPException(status_code=400, detail="Tipo de archivo no válido")
     
