@@ -57,6 +57,23 @@ Usuario quiere importar su página de beats desde GitHub (gerwinarizmendilopez/a
 - POST /api/payment/paypal/create-order - Crear orden PayPal
 - GET /api/payment/config - Config Stripe
 - GET /api/payment/paypal/config - Config PayPal
+- **GET /api/payment/contracts/list** - Lista contratos disponibles
+- **GET /api/payment/contract/{license}/{lang}** - Descargar contrato (es/en)
+
+## Estructura de Contratos
+```
+/app/uploads/contracts/
+├── basica/
+│   ├── contrato_basica_es.pdf
+│   └── contrato_basica_en.pdf
+├── premium/
+│   ├── contrato_premium_es.pdf
+│   └── contrato_premium_en.pdf
+└── exclusiva/
+    ├── contrato_exclusiva_es.pdf
+    └── contrato_exclusiva_en.pdf
+```
+**Nota:** Reemplazar los archivos de muestra con contratos PDF reales.
 
 ## Next Tasks / Backlog
 - P0: N/A - MVP completado
