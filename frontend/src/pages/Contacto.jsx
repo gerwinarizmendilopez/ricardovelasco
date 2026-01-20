@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Send, Music, Sparkles, Clock, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Send, Music, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import emailjs from '@emailjs/browser';
 
