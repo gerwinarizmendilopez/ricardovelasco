@@ -210,15 +210,47 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
                 </Button>
               )}
 
-              {/* Contrato */}
-              <Button
-                variant="outline"
-                className="border-white/30 text-gray-300 hover:bg-white/10 justify-start"
-                onClick={() => toast.info('Contrato en desarrollo')}
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Contrato de Licencia
-              </Button>
+              {/* Contrato con opciones de idioma */}
+              <div className="relative">
+                <Button
+                  variant="outline"
+                  className="w-full border-white/30 text-gray-300 hover:bg-white/10 justify-start"
+                  onClick={() => setShowContractOptions(!showContractOptions)}
+                >
+                  <FileText className="w-4 h-4 mr-2" />
+                  Contrato de Licencia {licenseLabels[license]}
+                  <ChevronDown className={`w-4 h-4 ml-auto transition-transform ${showContractOptions ? 'rotate-180' : ''}`} />
+                </Button>
+                
+                {showContractOptions && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-black/90 border border-white/30 rounded-lg overflow-hidden z-10">
+                    <button
+                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2 border-b border-white/20"
+                      onClick={() => handleDownloadContract('es')}
+                      disabled={downloading === 'contract_es'}
+                    >
+                      {downloading === 'contract_es' ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      ) : (
+                        <span className="text-lg">🇪🇸</span>
+                      )}
+                      <span>Español</span>
+                    </button>
+                    <button
+                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2"
+                      onClick={() => handleDownloadContract('en')}
+                      disabled={downloading === 'contract_en'}
+                    >
+                      {downloading === 'contract_en' ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      ) : (
+                        <span className="text-lg">🇺🇸</span>
+                      )}
+                      <span>English</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {license === 'exclusiva' && (
