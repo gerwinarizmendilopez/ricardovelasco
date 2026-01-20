@@ -235,7 +235,7 @@ export const Home = () => {
         <div className="max-w-[1600px] mx-auto relative z-10 w-full px-8 lg:px-20">
           <div className="max-w-2xl">
             {/* Subtitle */}
-            <p className="text-gray-400 text-lg md:text-xl mb-4 font-light tracking-wide">
+            <p className="text-white text-lg md:text-xl mb-4 font-light tracking-wide">
               Vive la experiencia de ser uno de los grandes de la industria
             </p>
             
