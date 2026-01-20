@@ -235,7 +235,7 @@ export const Contacto = () => {
             
             {/* Género */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Género Musical *
               </label>
               <select
@@ -243,7 +243,7 @@ export const Contacto = () => {
                 value={formData.genero}
                 onChange={handleChange}
                 required
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white focus:border-white focus:ring-1 focus:ring-white transition-colors appearance-none cursor-pointer"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white focus:border-white focus:ring-1 focus:ring-white transition-colors appearance-none cursor-pointer backdrop-blur-sm"
               >
                 <option value="" disabled>Selecciona un género</option>
                 {generos.map((genero) => (
@@ -254,10 +254,10 @@ export const Contacto = () => {
             
             {/* Detalles */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Detalles del Proyecto *
               </label>
-              <p className="text-gray-500 text-sm mb-2">
+              <p className="text-white/70 text-sm mb-2">
                 Añade qué quieres que lleve tu canción de forma muy detallada. Así podremos darte un beat de calidad.
               </p>
               <textarea
@@ -267,16 +267,16 @@ export const Contacto = () => {
                 required
                 rows={6}
                 placeholder="Describe el vibe que buscas, el BPM aproximado, instrumentos que te gustaría escuchar, el mood general, si es algo más melódico o agresivo, etc..."
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white placeholder-gray-500 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none backdrop-blur-sm"
               />
             </div>
             
             {/* Referencias */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Referencias - 3 Canciones *
               </label>
-              <p className="text-gray-500 text-sm mb-2">
+              <p className="text-white/70 text-sm mb-2">
                 Comparte 3 canciones que sirvan de referencia para tu propuesta (nombres o links de Spotify/YouTube).
               </p>
               <textarea
@@ -286,7 +286,7 @@ export const Contacto = () => {
                 required
                 rows={4}
                 placeholder="1. Bad Bunny - Tití Me Preguntó&#10;2. Travis Scott - SICKO MODE&#10;3. Peso Pluma - Ella Baila Sola"
-                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-4 text-white placeholder-gray-500 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none"
+                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none backdrop-blur-sm"
               />
             </div>
             
