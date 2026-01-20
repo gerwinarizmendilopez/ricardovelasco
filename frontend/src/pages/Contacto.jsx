@@ -243,7 +243,7 @@ export const Contacto = () => {
                 value={formData.genero}
                 onChange={handleChange}
                 required
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white focus:border-white focus:ring-1 focus:ring-white transition-colors appearance-none cursor-pointer backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors appearance-none cursor-pointer"
               >
                 <option value="" disabled>Selecciona un género</option>
                 {generos.map((genero) => (
@@ -267,7 +267,7 @@ export const Contacto = () => {
                 required
                 rows={6}
                 placeholder="Describe el vibe que buscas, el BPM aproximado, instrumentos que te gustaría escuchar, el mood general, si es algo más melódico o agresivo, etc..."
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
               />
             </div>
             
@@ -286,7 +286,7 @@ export const Contacto = () => {
                 required
                 rows={4}
                 placeholder="1. Bad Bunny - Tití Me Preguntó&#10;2. Travis Scott - SICKO MODE&#10;3. Peso Pluma - Ella Baila Sola"
-                className="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-4 text-white placeholder-white/50 focus:border-white focus:ring-1 focus:ring-white transition-colors resize-none backdrop-blur-sm"
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors resize-none"
               />
             </div>
             
