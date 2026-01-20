@@ -37,6 +37,11 @@ Usuario quiere importar su página de beats desde GitHub (gerwinarizmendilopez/a
 ✅ Sistema de licencias y precios
 ✅ Reproductor de audio funcionando
 ✅ EmailJS configurado para contacto
+✅ **Sistema de contratos de licencia por tipo e idioma** (Ene 2026)
+   - Contratos filtrados por tipo: básica, premium, exclusiva
+   - Disponibles en español e inglés
+   - Validación de compra antes de permitir descarga
+   - UI con selector de idioma (🇪🇸/🇺🇸)
 
 ## Credentials Configured
 - Stripe: Test keys configuradas
