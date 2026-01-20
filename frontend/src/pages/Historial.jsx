@@ -312,15 +312,47 @@ export const Historial = () => {
                           </Button>
                         )}
 
-                        {/* Contrato de Licencia */}
-                        <Button
-                          variant="outline"
-                          className="border-white/30 text-white hover:bg-white hover:text-black justify-start"
-                          onClick={() => handleDownload(purchase.beat_id, 'license', purchase.license_type, purchase.beat_name)}
-                        >
-                          <FileText className="w-4 h-4 mr-2" />
-                          Contrato de Licencia
-                        </Button>
+                        {/* Contrato de Licencia con selector de idioma */}
+                        <div className="relative">
+                          <Button
+                            variant="outline"
+                            className="w-full border-white/30 text-white hover:bg-white hover:text-black justify-start"
+                            onClick={() => setContractMenuOpen(contractMenuOpen === purchase.beat_id ? null : purchase.beat_id)}
+                          >
+                            <FileText className="w-4 h-4 mr-2" />
+                            Contrato de Licencia {licenseNames[purchase.license_type]}
+                            <ChevronDown className={`w-4 h-4 ml-auto transition-transform ${contractMenuOpen === purchase.beat_id ? 'rotate-180' : ''}`} />
+                          </Button>
+                          
+                          {contractMenuOpen === purchase.beat_id && (
+                            <div className="absolute top-full left-0 right-0 mt-1 bg-black/95 border border-white/30 rounded-lg overflow-hidden z-20">
+                              <button
+                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2 border-b border-white/20"
+                                onClick={() => handleDownloadContract(purchase.beat_id, purchase.license_type, purchase.beat_name, 'es')}
+                                disabled={downloadingContract === `${purchase.beat_id}_es`}
+                              >
+                                {downloadingContract === `${purchase.beat_id}_es` ? (
+                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                ) : (
+                                  <span className="text-lg">🇪🇸</span>
+                                )}
+                                <span>Español</span>
+                              </button>
+                              <button
+                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2"
+                                onClick={() => handleDownloadContract(purchase.beat_id, purchase.license_type, purchase.beat_name, 'en')}
+                                disabled={downloadingContract === `${purchase.beat_id}_en`}
+                              >
+                                {downloadingContract === `${purchase.beat_id}_en` ? (
+                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                ) : (
+                                  <span className="text-lg">🇺🇸</span>
+                                )}
+                                <span>English</span>
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       {purchase.license_type === 'exclusiva' && (
