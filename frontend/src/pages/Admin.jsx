@@ -718,10 +718,41 @@ export const Admin = () => {
                   </div>
                 </div>
 
-                {/* Audio Upload - MP3 */}
+                {/* Audio Preview - MP3 con marca de agua (Exhibición) */}
                 <div>
-                  <Label className="text-white">Archivo MP3 (Exhibición y Licencia Básica) *</Label>
-                  <p className="text-xs text-gray-300 mb-2">Este archivo será usado para preview y descargas de licencia básica</p>
+                  <Label className="text-white">🔊 MP3 EXHIBICIÓN (con marca de agua) *</Label>
+                  <p className="text-xs text-gray-300 mb-2">Este se reproduce en la página. Debe tener marca de agua para protección.</p>
+                  <div 
+                    className={`mt-2 flex justify-center px-6 py-8 border-2 border-dashed rounded-lg cursor-pointer ${
+                      audioPreviewFile ? 'border-orange-600/50 bg-orange-950/10' : 'border-gray-800/20 hover:border-gray-200/50'
+                    }`}
+                    onClick={() => audioPreviewInputRef.current?.click()}
+                  >
+                    {audioPreviewFile ? (
+                      <div className="text-center">
+                        <Check className="mx-auto h-8 w-8 text-orange-500" />
+                        <p className="text-sm text-orange-400 mt-2">{audioPreviewPreview}</p>
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <Upload className="mx-auto h-8 w-8 text-orange-400" />
+                        <p className="text-sm text-orange-400 mt-2">Click para MP3 con marca de agua</p>
+                      </div>
+                    )}
+                  </div>
+                  <input ref={audioPreviewInputRef} type="file" className="hidden" accept=".mp3" onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setAudioPreviewFile(file);
+                      setAudioPreviewPreview(file.name);
+                    }
+                  }} />
+                </div>
+
+                {/* Audio Upload - MP3 sin marca (Descargable) */}
+                <div>
+                  <Label className="text-white">🎵 MP3 DESCARGABLE (sin marca de agua) *</Label>
+                  <p className="text-xs text-gray-300 mb-2">Este archivo es el que se descarga con la compra. Sin marca de agua.</p>
                   <div 
                     className={`mt-2 flex justify-center px-6 py-8 border-2 border-dashed rounded-lg cursor-pointer ${
                       audioFile ? 'border-green-600/50 bg-green-950/10' : 'border-gray-800/20 hover:border-gray-200/50'
@@ -735,8 +766,8 @@ export const Admin = () => {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <Upload className="mx-auto h-8 w-8 text-gray-400" />
-                        <p className="text-sm text-gray-400 mt-2">Click para seleccionar MP3</p>
+                        <Upload className="mx-auto h-8 w-8 text-green-400" />
+                        <p className="text-sm text-green-400 mt-2">Click para MP3 descargable</p>
                       </div>
                     )}
                   </div>
@@ -745,7 +776,7 @@ export const Admin = () => {
 
                 {/* WAV Upload */}
                 <div>
-                  <Label className="text-white">Archivo WAV (Premium y Exclusiva)</Label>
+                  <Label className="text-white">📀 WAV (Premium y Exclusiva)</Label>
                   <p className="text-xs text-gray-300 mb-2">Disponible para licencias Premium y Exclusiva</p>
                   <div 
                     className={`mt-2 flex justify-center px-6 py-8 border-2 border-dashed rounded-lg cursor-pointer ${
@@ -760,8 +791,8 @@ export const Admin = () => {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <Upload className="mx-auto h-8 w-8 text-white" />
-                        <p className="text-sm text-white mt-2">Click para seleccionar WAV (opcional)</p>
+                        <Upload className="mx-auto h-8 w-8 text-blue-400" />
+                        <p className="text-sm text-blue-400 mt-2">Click para seleccionar WAV (opcional)</p>
                       </div>
                     )}
                   </div>
@@ -770,7 +801,7 @@ export const Admin = () => {
 
                 {/* Stems Upload */}
                 <div>
-                  <Label className="text-white">Stems RAR/ZIP (Solo Exclusiva)</Label>
+                  <Label className="text-white">📦 STEMS RAR/ZIP (Solo Exclusiva)</Label>
                   <p className="text-xs text-gray-300 mb-2">Disponible únicamente para licencia Exclusiva</p>
                   <div 
                     className={`mt-2 flex justify-center px-6 py-8 border-2 border-dashed rounded-lg cursor-pointer ${
@@ -785,8 +816,8 @@ export const Admin = () => {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <Upload className="mx-auto h-8 w-8 text-white" />
-                        <p className="text-sm text-white mt-2">Click para seleccionar RAR/ZIP (opcional)</p>
+                        <Upload className="mx-auto h-8 w-8 text-yellow-400" />
+                        <p className="text-sm text-yellow-400 mt-2">Click para seleccionar RAR/ZIP (opcional)</p>
                       </div>
                     )}
                   </div>
@@ -795,7 +826,7 @@ export const Admin = () => {
 
                 {/* Cover Upload */}
                 <div>
-                  <Label className="text-white">Imagen de Portada *</Label>
+                  <Label className="text-white">🖼️ Imagen de Portada *</Label>
                   <div 
                     className={`mt-2 flex justify-center px-6 py-8 border-2 border-dashed rounded-lg cursor-pointer ${
                       coverFile ? 'border-green-600/50 bg-green-950/10' : 'border-gray-800/20 hover:border-gray-200/50'
