@@ -211,7 +211,7 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
               )}
 
               {/* Contrato con opciones de idioma */}
-              <div className="relative">
+              <div className="relative" style={{ zIndex: 50 }}>
                 <Button
                   variant="outline"
                   className="w-full border-white/30 text-gray-300 hover:bg-white/10 justify-start"
@@ -223,9 +223,9 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
                 </Button>
                 
                 {showContractOptions && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-black/90 border border-white/30 rounded-lg overflow-hidden z-10">
+                  <div className="absolute bottom-full left-0 right-0 mb-1 bg-black border border-white/30 rounded-lg shadow-2xl" style={{ zIndex: 100 }}>
                     <button
-                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2 border-b border-white/20"
+                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-3 border-b border-white/20"
                       onClick={() => handleDownloadContract('es')}
                       disabled={downloading === 'contract_es'}
                     >
@@ -234,10 +234,13 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
                       ) : (
                         <span className="text-lg">🇪🇸</span>
                       )}
-                      <span>Español</span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Español</span>
+                        <span className="text-xs text-gray-400">contrato_{license}_es.pdf</span>
+                      </div>
                     </button>
                     <button
-                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2"
+                      className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-3"
                       onClick={() => handleDownloadContract('en')}
                       disabled={downloading === 'contract_en'}
                     >
@@ -246,7 +249,10 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
                       ) : (
                         <span className="text-lg">🇺🇸</span>
                       )}
-                      <span>English</span>
+                      <div className="flex flex-col">
+                        <span className="font-medium">English</span>
+                        <span className="text-xs text-gray-400">contrato_{license}_en.pdf</span>
+                      </div>
                     </button>
                   </div>
                 )}
