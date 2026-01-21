@@ -1542,8 +1542,6 @@ export const Admin = () => {
                               )}
                             </div>
                           </td>
-                            </div>
-                          </td>
                           <td className="py-4 px-4 text-right">
                             <div className="flex items-center justify-end gap-1 flex-wrap">
                               {/* Descuento */}
