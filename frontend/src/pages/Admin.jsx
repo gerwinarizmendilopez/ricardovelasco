@@ -1373,7 +1373,7 @@ export const Admin = () => {
                             </button>
                           </div>
                         ) : (
-                          <label htmlFor="edit-stems-file" className="cursor-pointer block text-white text-sm">
+                          <label htmlFor="edit-stems-file" className="cursor-pointer block text-purple-400 text-sm">
                             Click para seleccionar RAR/ZIP
                           </label>
                         )}
