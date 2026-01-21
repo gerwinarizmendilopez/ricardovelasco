@@ -447,6 +447,7 @@ export const Admin = () => {
       priceExclusiva: beat.price_exclusiva || ''
     });
     setEditAudioFile(null);
+    setEditAudioPreviewFile(null);
     setEditCoverFile(null);
     setEditWavFile(null);
     setEditStemsFile(null);
