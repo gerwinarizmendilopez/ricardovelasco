@@ -57,7 +57,8 @@ export const Admin = () => {
     pricePremium: '',
     priceExclusiva: ''
   });
-  const [editAudioFile, setEditAudioFile] = useState(null);
+  const [editAudioFile, setEditAudioFile] = useState(null);  // MP3 descargable
+  const [editAudioPreviewFile, setEditAudioPreviewFile] = useState(null);  // MP3 exhibición
   const [editCoverFile, setEditCoverFile] = useState(null);
   const [editWavFile, setEditWavFile] = useState(null);
   const [editStemsFile, setEditStemsFile] = useState(null);
