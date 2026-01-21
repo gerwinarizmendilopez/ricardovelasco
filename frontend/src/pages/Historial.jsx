@@ -313,7 +313,7 @@ export const Historial = () => {
                         )}
 
                         {/* Contrato de Licencia con selector de idioma */}
-                        <div className="relative">
+                        <div className="relative" style={{ zIndex: 50 }}>
                           <Button
                             variant="outline"
                             className="w-full border-white/30 text-white hover:bg-white hover:text-black justify-start"
@@ -325,9 +325,9 @@ export const Historial = () => {
                           </Button>
                           
                           {contractMenuOpen === purchase.beat_id && (
-                            <div className="absolute top-full left-0 right-0 mt-1 bg-black/95 border border-white/30 rounded-lg overflow-hidden z-20">
+                            <div className="absolute bottom-full left-0 right-0 mb-1 bg-black border border-white/30 rounded-lg shadow-2xl" style={{ zIndex: 100 }}>
                               <button
-                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2 border-b border-white/20"
+                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-3 border-b border-white/20"
                                 onClick={() => handleDownloadContract(purchase.beat_id, purchase.license_type, purchase.beat_name, 'es')}
                                 disabled={downloadingContract === `${purchase.beat_id}_es`}
                               >
@@ -336,10 +336,13 @@ export const Historial = () => {
                                 ) : (
                                   <span className="text-lg">🇪🇸</span>
                                 )}
-                                <span>Español</span>
+                                <div className="flex flex-col">
+                                  <span className="font-medium">Español</span>
+                                  <span className="text-xs text-gray-400">contrato_{purchase.license_type}_es.pdf</span>
+                                </div>
                               </button>
                               <button
-                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-2"
+                                className="w-full px-4 py-3 text-left text-white hover:bg-white/10 flex items-center gap-3"
                                 onClick={() => handleDownloadContract(purchase.beat_id, purchase.license_type, purchase.beat_name, 'en')}
                                 disabled={downloadingContract === `${purchase.beat_id}_en`}
                               >
@@ -348,7 +351,10 @@ export const Historial = () => {
                                 ) : (
                                   <span className="text-lg">🇺🇸</span>
                                 )}
-                                <span>English</span>
+                                <div className="flex flex-col">
+                                  <span className="font-medium">English</span>
+                                  <span className="text-xs text-gray-400">contrato_{purchase.license_type}_en.pdf</span>
+                                </div>
                               </button>
                             </div>
                           )}
