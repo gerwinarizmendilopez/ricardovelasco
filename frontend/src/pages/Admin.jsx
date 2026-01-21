@@ -1279,7 +1279,7 @@ export const Admin = () => {
                           </div>
                         </div>
                       </div>
-                      <p className="text-xs text-white/50 mt-2">Los contratos se gestionan desde el tab "Contratos" y aplican a todos los beats.</p>
+                      <p className="text-xs text-white/50 mt-2">Los contratos se gestionan desde el tab &quot;Contratos&quot; y aplican a todos los beats.</p>
                     </div>
                   </div>
 
