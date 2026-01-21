@@ -43,6 +43,10 @@ class BeatResponse(BaseModel):
     audio_url: str
     cover_url: str
     cover_filename: Optional[str] = None
+    audio_filename: Optional[str] = None
+    audio_preview_filename: Optional[str] = None
+    wav_filename: Optional[str] = None
+    stems_filename: Optional[str] = None
     wav_url: Optional[str] = None
     stems_url: Optional[str] = None
     plays: int = 0
