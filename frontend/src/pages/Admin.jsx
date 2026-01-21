@@ -1205,6 +1205,82 @@ export const Admin = () => {
                         </p>
                       </div>
                     </div>
+
+                    {/* Sección de Contratos */}
+                    <div className="col-span-full mt-4 pt-4 border-t border-white/10">
+                      <h4 className="text-white font-medium mb-3">📄 CONTRATOS DE LICENCIA (Globales)</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {/* Básica */}
+                        <div className="bg-green-500/5 border border-green-500/20 rounded p-3">
+                          <span className="text-green-400 font-medium text-sm">Licencia Básica</span>
+                          <div className="mt-2 space-y-1">
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇪🇸 Español:</span>
+                              {globalContracts.basica?.es ? (
+                                <span className="text-green-400">{globalContracts.basica.es}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇺🇸 English:</span>
+                              {globalContracts.basica?.en ? (
+                                <span className="text-green-400">{globalContracts.basica.en}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Premium */}
+                        <div className="bg-blue-500/5 border border-blue-500/20 rounded p-3">
+                          <span className="text-blue-400 font-medium text-sm">Licencia Premium</span>
+                          <div className="mt-2 space-y-1">
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇪🇸 Español:</span>
+                              {globalContracts.premium?.es ? (
+                                <span className="text-green-400">{globalContracts.premium.es}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇺🇸 English:</span>
+                              {globalContracts.premium?.en ? (
+                                <span className="text-green-400">{globalContracts.premium.en}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Exclusiva */}
+                        <div className="bg-yellow-500/5 border border-yellow-500/20 rounded p-3">
+                          <span className="text-yellow-400 font-medium text-sm">Licencia Exclusiva</span>
+                          <div className="mt-2 space-y-1">
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇪🇸 Español:</span>
+                              {globalContracts.exclusiva?.es ? (
+                                <span className="text-green-400">{globalContracts.exclusiva.es}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-white/70">🇺🇸 English:</span>
+                              {globalContracts.exclusiva?.en ? (
+                                <span className="text-green-400">{globalContracts.exclusiva.en}</span>
+                              ) : (
+                                <span className="text-red-400">✗ No subido</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-white/50 mt-2">Los contratos se gestionan desde el tab "Contratos" y aplican a todos los beats.</p>
+                    </div>
                   </div>
 
                   <h3 className="text-lg font-semibold text-white">📤 Subir nuevos archivos (dejar vacío para mantener actuales)</h3>
