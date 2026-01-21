@@ -1099,7 +1099,113 @@ export const Admin = () => {
 
                 {/* Archivos (opcionales para edición) */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-white">Archivos (dejar vacío para mantener actuales)</h3>
+                  {/* ARCHIVOS ACTUALES DEL BEAT */}
+                  <div className="bg-black/60 border border-white/20 rounded-lg p-4">
+                    <h3 className="text-lg font-bold text-white mb-4">📁 ARCHIVOS ACTUALES</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {/* Imagen */}
+                      <div className="bg-black/40 rounded p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-yellow-400 font-medium">🖼️ Portada</span>
+                          {editingBeat.cover_filename ? (
+                            <a 
+                              href={`${API}/beats/cover/${editingBeat.cover_filename}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded hover:bg-yellow-500/30"
+                            >
+                              Ver
+                            </a>
+                          ) : null}
+                        </div>
+                        <p className="text-xs text-white/70 mt-1 truncate" title={editingBeat.cover_filename || 'No subido'}>
+                          {editingBeat.cover_filename || <span className="text-red-400">✗ No subido</span>}
+                        </p>
+                      </div>
+
+                      {/* MP3 Preview */}
+                      <div className="bg-black/40 rounded p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-orange-400 font-medium">🔊 MP3 Exhibición</span>
+                          {editingBeat.audio_preview_filename ? (
+                            <a 
+                              href={`${API}/beats/audio/${editingBeat.audio_preview_filename}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-xs bg-orange-500/20 text-orange-400 px-2 py-1 rounded hover:bg-orange-500/30"
+                            >
+                              Escuchar
+                            </a>
+                          ) : null}
+                        </div>
+                        <p className="text-xs text-white/70 mt-1 truncate" title={editingBeat.audio_preview_filename || 'No subido'}>
+                          {editingBeat.audio_preview_filename || <span className="text-red-400">✗ No subido</span>}
+                        </p>
+                      </div>
+
+                      {/* MP3 Descargable */}
+                      <div className="bg-black/40 rounded p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-green-400 font-medium">🎵 MP3 Descarga</span>
+                          {editingBeat.audio_filename ? (
+                            <a 
+                              href={`${API}/beats/audio/${editingBeat.audio_filename}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded hover:bg-green-500/30"
+                            >
+                              Descargar
+                            </a>
+                          ) : null}
+                        </div>
+                        <p className="text-xs text-white/70 mt-1 truncate" title={editingBeat.audio_filename || 'No subido'}>
+                          {editingBeat.audio_filename || <span className="text-red-400">✗ No subido</span>}
+                        </p>
+                      </div>
+
+                      {/* WAV */}
+                      <div className="bg-black/40 rounded p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-blue-400 font-medium">📀 WAV</span>
+                          {editingBeat.wav_filename ? (
+                            <a 
+                              href={`${API}/beats/wav/${editingBeat.wav_filename}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded hover:bg-blue-500/30"
+                            >
+                              Descargar
+                            </a>
+                          ) : null}
+                        </div>
+                        <p className="text-xs text-white/70 mt-1 truncate" title={editingBeat.wav_filename || 'No subido'}>
+                          {editingBeat.wav_filename || <span className="text-gray-400">✗ No subido</span>}
+                        </p>
+                      </div>
+
+                      {/* STEMS */}
+                      <div className="bg-black/40 rounded p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-purple-400 font-medium">📦 STEMS</span>
+                          {editingBeat.stems_filename ? (
+                            <a 
+                              href={`${API}/beats/stems/${editingBeat.stems_filename}`} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded hover:bg-purple-500/30"
+                            >
+                              Descargar
+                            </a>
+                          ) : null}
+                        </div>
+                        <p className="text-xs text-white/70 mt-1 truncate" title={editingBeat.stems_filename || 'No subido'}>
+                          {editingBeat.stems_filename || <span className="text-gray-400">✗ No subido</span>}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-white">📤 Subir nuevos archivos (dejar vacío para mantener actuales)</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* MP3 */}
