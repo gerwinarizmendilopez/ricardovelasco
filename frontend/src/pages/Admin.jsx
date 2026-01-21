@@ -1210,11 +1210,45 @@ export const Admin = () => {
                   <h3 className="text-lg font-semibold text-white">📤 Subir nuevos archivos (dejar vacío para mantener actuales)</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* MP3 */}
+                    {/* MP3 Exhibición (con marca de agua) */}
                     <div>
-                      <Label htmlFor="edit-audio-file" className="text-white">Nuevo MP3 de exhibición</Label>
+                      <Label htmlFor="edit-audio-preview-file" className="text-orange-400 font-medium">🔊 Nuevo MP3 EXHIBICIÓN (con marca de agua)</Label>
                       <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
-                        editAudioFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-white/50'
+                        editAudioPreviewFile ? 'border-orange-500 bg-orange-500/10' : 'border-gray-800/20 hover:border-orange-500/50'
+                      }`}>
+                        <input
+                          id="edit-audio-preview-file"
+                          type="file"
+                          accept=".mp3,audio/mpeg"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) setEditAudioPreviewFile(file);
+                          }}
+                        />
+                        {editAudioPreviewFile ? (
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <Check className="w-4 h-4 text-orange-500" />
+                              <span className="text-orange-500 text-sm">{editAudioPreviewFile.name}</span>
+                            </div>
+                            <button type="button" onClick={() => setEditAudioPreviewFile(null)} className="text-gray-400 hover:text-white">
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ) : (
+                          <label htmlFor="edit-audio-preview-file" className="cursor-pointer block text-orange-400 text-sm">
+                            Click para seleccionar MP3 con marca de agua
+                          </label>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* MP3 Descargable (sin marca de agua) */}
+                    <div>
+                      <Label htmlFor="edit-audio-file" className="text-green-400 font-medium">🎵 Nuevo MP3 DESCARGA (sin marca de agua)</Label>
+                      <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
+                        editAudioFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-green-500/50'
                       }`}>
                         <input
                           id="edit-audio-file"
@@ -1223,10 +1257,7 @@ export const Admin = () => {
                           className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file) {
-                              console.log('Audio file selected:', file.name, file.size);
-                              setEditAudioFile(file);
-                            }
+                            if (file) setEditAudioFile(file);
                           }}
                         />
                         {editAudioFile ? (
@@ -1240,8 +1271,8 @@ export const Admin = () => {
                             </button>
                           </div>
                         ) : (
-                          <label htmlFor="edit-audio-file" className="cursor-pointer block text-white text-sm">
-                            Click para seleccionar MP3
+                          <label htmlFor="edit-audio-file" className="cursor-pointer block text-green-400 text-sm">
+                            Click para seleccionar MP3 descargable
                           </label>
                         )}
                       </div>
@@ -1249,7 +1280,7 @@ export const Admin = () => {
 
                     {/* Cover */}
                     <div>
-                      <Label htmlFor="edit-cover-file" className="text-white">Nueva portada</Label>
+                      <Label htmlFor="edit-cover-file" className="text-yellow-400 font-medium">🖼️ Nueva portada</Label>
                       <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
                         editCoverFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-white/50'
                       }`}>
