@@ -124,7 +124,7 @@ const PurchasedBeatCard = ({ sale, isExpanded, onToggle }) => {
   const license = sale.license_type?.toLowerCase() || 'basica';
 
   return (
-    <Card className="bg-black/60 backdrop-blur-sm border-white/30 overflow-hidden">
+    <Card className="bg-black/60 backdrop-blur-sm border-white/30">
       <CardContent className="p-0">
         {/* Header clickeable */}
         <div 
