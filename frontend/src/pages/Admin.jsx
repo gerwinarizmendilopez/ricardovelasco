@@ -1282,7 +1282,7 @@ export const Admin = () => {
                     <div>
                       <Label htmlFor="edit-cover-file" className="text-yellow-400 font-medium">🖼️ Nueva portada</Label>
                       <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
-                        editCoverFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-white/50'
+                        editCoverFile ? 'border-yellow-500 bg-yellow-500/10' : 'border-gray-800/20 hover:border-yellow-500/50'
                       }`}>
                         <input
                           id="edit-cover-file"
@@ -1291,24 +1291,21 @@ export const Admin = () => {
                           className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file) {
-                              console.log('Cover file selected:', file.name, file.size, file.type);
-                              setEditCoverFile(file);
-                            }
+                            if (file) setEditCoverFile(file);
                           }}
                         />
                         {editCoverFile ? (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <Check className="w-4 h-4 text-green-500" />
-                              <span className="text-green-500 text-sm">{editCoverFile.name}</span>
+                              <Check className="w-4 h-4 text-yellow-500" />
+                              <span className="text-yellow-500 text-sm">{editCoverFile.name}</span>
                             </div>
                             <button type="button" onClick={() => setEditCoverFile(null)} className="text-gray-400 hover:text-white">
                               <X className="w-4 h-4" />
                             </button>
                           </div>
                         ) : (
-                          <label htmlFor="edit-cover-file" className="cursor-pointer block text-white text-sm">
+                          <label htmlFor="edit-cover-file" className="cursor-pointer block text-yellow-400 text-sm">
                             Click para seleccionar imagen
                           </label>
                         )}
@@ -1317,9 +1314,9 @@ export const Admin = () => {
 
                     {/* WAV */}
                     <div>
-                      <Label htmlFor="edit-wav-file" className="text-white">Nuevo archivo WAV</Label>
+                      <Label htmlFor="edit-wav-file" className="text-blue-400 font-medium">📀 Nuevo archivo WAV</Label>
                       <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
-                        editWavFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-white/50'
+                        editWavFile ? 'border-blue-500 bg-blue-500/10' : 'border-gray-800/20 hover:border-blue-500/50'
                       }`}>
                         <input
                           id="edit-wav-file"
@@ -1328,24 +1325,21 @@ export const Admin = () => {
                           className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file) {
-                              console.log('WAV file selected:', file.name, file.size);
-                              setEditWavFile(file);
-                            }
+                            if (file) setEditWavFile(file);
                           }}
                         />
                         {editWavFile ? (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <Check className="w-4 h-4 text-green-500" />
-                              <span className="text-green-500 text-sm">{editWavFile.name}</span>
+                              <Check className="w-4 h-4 text-blue-500" />
+                              <span className="text-blue-500 text-sm">{editWavFile.name}</span>
                             </div>
                             <button type="button" onClick={() => setEditWavFile(null)} className="text-gray-400 hover:text-white">
                               <X className="w-4 h-4" />
                             </button>
                           </div>
                         ) : (
-                          <label htmlFor="edit-wav-file" className="cursor-pointer block text-white text-sm">
+                          <label htmlFor="edit-wav-file" className="cursor-pointer block text-blue-400 text-sm">
                             Click para seleccionar WAV
                           </label>
                         )}
@@ -1354,9 +1348,9 @@ export const Admin = () => {
 
                     {/* Stems */}
                     <div>
-                      <Label htmlFor="edit-stems-file" className="text-white">Nuevos Stems (RAR/ZIP)</Label>
+                      <Label htmlFor="edit-stems-file" className="text-purple-400 font-medium">📦 Nuevos Stems (RAR/ZIP)</Label>
                       <div className={`border-2 border-dashed rounded-lg p-4 text-center transition-colors ${
-                        editStemsFile ? 'border-green-500 bg-green-500/10' : 'border-gray-800/20 hover:border-white/50'
+                        editStemsFile ? 'border-purple-500 bg-purple-500/10' : 'border-gray-800/20 hover:border-purple-500/50'
                       }`}>
                         <input
                           id="edit-stems-file"
@@ -1365,17 +1359,14 @@ export const Admin = () => {
                           className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file) {
-                              console.log('Stems file selected:', file.name, file.size);
-                              setEditStemsFile(file);
-                            }
+                            if (file) setEditStemsFile(file);
                           }}
                         />
                         {editStemsFile ? (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <Check className="w-4 h-4 text-green-500" />
-                              <span className="text-green-500 text-sm">{editStemsFile.name}</span>
+                              <Check className="w-4 h-4 text-purple-500" />
+                              <span className="text-purple-500 text-sm">{editStemsFile.name}</span>
                             </div>
                             <button type="button" onClick={() => setEditStemsFile(null)} className="text-gray-400 hover:text-white">
                               <X className="w-4 h-4" />
