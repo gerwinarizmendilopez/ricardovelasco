@@ -240,18 +240,15 @@ export const Contacto = () => {
               <label className="block text-sm font-medium text-white uppercase tracking-wider">
                 Género Musical *
               </label>
-              <select
+              <input
+                type="text"
                 name="genero"
                 value={formData.genero}
                 onChange={handleChange}
                 required
-                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors appearance-none cursor-pointer"
-              >
-                <option value="" disabled>Selecciona un género</option>
-                {generos.map((genero) => (
-                  <option key={genero} value={genero}>{genero}</option>
-                ))}
-              </select>
+                placeholder="Ej: Trap, Reggaeton, Hip Hop, R&B, Corridos..."
+                className="w-full bg-black/50 border-none rounded-lg px-4 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 transition-colors"
+              />
             </div>
             
             {/* Detalles */}
